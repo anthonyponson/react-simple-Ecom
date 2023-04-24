@@ -75,7 +75,7 @@ function Product() {
         <form onSubmit={renderProduct} className="flex flex-col space-y-2">
           <label className="font-medium">Product Name</label>
           <input
-            className="border-2 border-green-500 p-2 rounded"
+            className="border-2 border-green-500 p-2 rounded-full"
             onChange={inputChange}
             type="text"
             value={name}
@@ -87,7 +87,7 @@ function Product() {
 
           <label className="font-medium">Product Description</label>
           <input
-            className="border-2 border-green-500 p-2 rounded"
+            className="border-2 border-green-500 p-2 rounded-full"
             onChange={inputChange}
             type="text"
             value={des}
@@ -98,7 +98,7 @@ function Product() {
           )}
           <label className="font-medium">Product Price</label>
           <input
-            className="border-2 border-green-500 p-2 rounded"
+            className="border-2 border-green-500 p-2 rounded-full"
             onChange={inputChange}
             type="number"
             value={price}
@@ -109,22 +109,16 @@ function Product() {
           )}
           <label className="font-medium">Image Url</label>
           <input
-            className="border-2 border-green-500 p-2 rounded"
+            className="border-2 border-green-500 p-2 rounded-full"
             onChange={inputChange}
             type="text"
             value={image}
             name="image"
           />
           <div className="flex items-center justify-center space-x-2">
-            <button
-              type="button"
-              onClick={() => setValue(Math.max(0, value - 1))}
-              className="px-2 py-1 rounded-md bg-green-500 text-white"
-            >
-              -
-            </button>
+            
             <input
-              className="border-2 border-green-500 w-16 text-center"
+              className="border-2 border-green-500 w-16 text-center rounded-full"
               type="number"
               value={value}
               onChange={inputChange}
@@ -132,13 +126,7 @@ function Product() {
               max="10"
               name="count"
             />
-            <button
-              type="button"
-              onClick={() => setValue(Math.min(10, value + 1))}
-              className="px-2 py-1 rounded-md bg-green-500 text-white"
-            >
-              +
-            </button>
+            
           </div>
           <input
             type="submit"

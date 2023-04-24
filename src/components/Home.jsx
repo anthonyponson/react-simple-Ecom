@@ -7,8 +7,6 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 function Home() {
   const [products, setProducts] = useState([])
   const [favorites, setFavorites] = useState([])
-  const [isAddingToCart, setIsAddingToCart] = useState(false)
-
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -31,39 +29,30 @@ function Home() {
     } else {
       setFavorites([...favorites, product])
       localStorage.setItem('favorites', JSON.stringify([...favorites, product]))
+      console.log(favorites)
     }
   }
 
   const addToCart = (product) => {
-    setIsAddingToCart(true) // set the state to trigger the animation
-    setTimeout(() => {
-      setIsAddingToCart(false) // reset the state after the animation finishes
-    }, 1000)
-
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [] // get existing items or initialize an empty array
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [] 
     const existingProductIndex = cartItems.findIndex(
       (item) => item.id === product.id
-    ) // check if product already exists in cart
-
-    if (product.quantity <= 0) {
-      return
-    }
-
+    ) 
+    if (product.quantity <= 0)  return
+    
     if (existingProductIndex !== -1) {
-      // if product already exists in cart, update its quantity
       cartItems[existingProductIndex].quantity += product.quantity
     } else {
-      cartItems.push(product) // add the product to the array
+      cartItems.push(product) 
     }
-
-    localStorage.setItem('cartItems', JSON.stringify(cartItems)) // save the array to local storage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems)) 
   }
 
   return (
     <>
       <div className='px-6'>
-        <button onClick={gotohome}>Home</button>
-        <h1>Products:</h1>
+        {/* <button onClick={gotohome}>Home</button> */}
+        
         {/* <p>{images[i].url}</p> */}
         {/* {images.map((img) =>
                 img.id === product.id ? (
@@ -77,7 +66,7 @@ function Home() {
           {products.map((product, i) => (
             <div
               key={product.id}
-              className='md:w-1/3 flex flex-col bg-emerald-400 m-2 space-y-2 shadow-lg rounded-lg'
+              className='md:w-1/3  flex flex-col bg-emerald-400 m-2 space-y-2 sapc shadow-lg rounded-lg'
             >
               <img
                 style={{ height: '350px', width: '430px' }}
@@ -87,7 +76,7 @@ function Home() {
               />
               <div id='icon' className='relative'>
                 <FavoriteIcon
-                  className='text-white absolute top-1 left cursor-pointer'
+                  className='text-white absolute left cursor-pointer top-3'
                   onClick={() => addToFavorites(product)}
                   style={{
                     color: favorites.find((fav) => fav.id === product.id)
@@ -132,7 +121,7 @@ function Home() {
 
                   <AddShoppingCartIcon
                     onClick={() => addToCart(product)}
-                    className='absolute left'
+                    className='absolute left2'
                   />
                 </div>
               </div>

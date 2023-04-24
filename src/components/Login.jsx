@@ -12,11 +12,11 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (state.isLoggedIn) {
-      navigate('/home')
-    }
-  }, [state.isLoggedIn, navigate])
+  // useEffect(() => {
+  //   if (state.isLoggedIn) {
+  //     navigate('/home')
+  //   }
+  // }, [state.isLoggedIn, navigate])
 
   const userNameChange = (e) => {
     if (e.target.name === 'name') {

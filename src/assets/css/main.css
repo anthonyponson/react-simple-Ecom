@@ -4,9 +4,13 @@
 
 
 .left{
-    left: 90%;
+    left: 85%;
+}
+.left2{
+    left: 88%;
 }
 
 .box-shadow{
     box-shadow: 2px 7px 13px rgba(24, 24, 24, 0.471);
 }
+

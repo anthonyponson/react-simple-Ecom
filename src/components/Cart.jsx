@@ -18,29 +18,29 @@ function Cart() {
     )
   }, [])
 
-  const addToCart = (product) => {
-    const existingProduct = products.find((p) => p.id === product.id)
-    if (existingProduct) {
-      const newProducts = products.map((p) => {
-        if (p.id === product.id) {
-          return { ...p, quantity: p.quantity + 1 }
-        } else {
-          return p
-        }
-      })
-      setProducts(newProducts)
-      localStorage.setItem('cartItems', JSON.stringify(newProducts))
-      setTotalPrice(totalPrice + product.price)
-    } else {
-      const newProduct = { ...product, quantity: 1 }
-      setProducts([...products, newProduct])
-      localStorage.setItem(
-        'cartItems',
-        JSON.stringify([...products, newProduct])
-      )
-      setTotalPrice(totalPrice + product.price)
-    }
-  }
+  // const addToCart = (product) => {
+  //   const existingProduct = products.find((p) => p.id === product.id)
+  //   if (existingProduct) {
+  //     const newProducts = products.map((p) => {
+  //       if (p.id === product.id) {
+  //         return { ...p, quantity: p.quantity + 1 }
+  //       } else {
+  //         return p
+  //       }
+  //     })
+  //     setProducts(newProducts)
+  //     localStorage.setItem('cartItems', JSON.stringify(newProducts))
+  //     setTotalPrice(totalPrice + product.price)
+  //   } else {
+  //     const newProduct = { ...product, quantity: 1 }
+  //     setProducts([...products, newProduct])
+  //     localStorage.setItem(
+  //       'cartItems',
+  //       JSON.stringify([...products, newProduct])
+  //     )
+  //     setTotalPrice(totalPrice + product.price)
+  //   }
+  // }
 
   const removeFromCart = (product) => {
     const existingProduct = products.find((p) => p.id === product.id)
@@ -99,6 +99,7 @@ function Cart() {
                     name='count'
                     value={product.quantity}
                     max='10'
+                    min='0'
                     onChange={(e) => {
                       const newQuantity = parseInt(e.target.value)
                       const newProducts = products.map((p) => {

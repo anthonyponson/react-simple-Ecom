@@ -4,7 +4,6 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 
 function Fav() {
   const [favorites, setFavorites] = useState([])
-  const [isAddingToCart, setIsAddingToCart] = useState(false)
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || []
@@ -18,17 +17,26 @@ function Fav() {
   }
 
   const addToCart = (product) => {
-    setIsAddingToCart(true) // set the state to trigger the animation
-    setTimeout(() => {
-      setIsAddingToCart(false) // reset the state after the animation finishes
-    }, 1000)
+
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [] // get existing items or initialize an empty array
+    const existingProductIndex = cartItems.findIndex(
+      (item) => item.id === product.id
+    ) // check if product already exists in cart
+
     if (product.quantity <= 0) {
       return
     }
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [] // get existing items or initialize an empty array
-    cartItems.push(product) // add the product to the array
-    localStorage.setItem('cartItems', JSON.stringify(cartItems)) // save the array to local storage
+
+    if (existingProductIndex !== -1) {
+      // if product already exists in cart, update its quantity
+      cartItems[existingProductIndex].quantity += product.quantity
+    } else {
+      cartItems.push(product) // add the product to the array
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(cartItems)) 
   }
+  
 
   return (
     <>
