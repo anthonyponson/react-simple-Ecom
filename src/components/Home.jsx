@@ -9,6 +9,19 @@ function Home() {
   const [favorites, setFavorites] = useState([])
   const navigate = useNavigate()
 
+
+  const [color, setColor] = useState(false)
+
+  const changeColor = () => {
+    const newColor = !color
+    setColor(newColor)
+    localStorage.setItem('productColor', JSON.stringify(newColor))
+  }
+
+  const buttonStyle = {
+    backgroundColor: color ? 'red' : 'blue',
+  }
+
   useEffect(() => {
     const storedProducts = JSON.parse(localStorage.getItem('product')) || []
     setProducts(storedProducts)
@@ -51,6 +64,12 @@ function Home() {
   return (
     <>
       <div className='px-6'>
+
+      {/* <div>
+        <button style={buttonStyle} onClick={changeColor}>
+          count
+        </button>
+      </div> */}
         {/* <button onClick={gotohome}>Home</button> */}
         
         {/* <p>{images[i].url}</p> */}

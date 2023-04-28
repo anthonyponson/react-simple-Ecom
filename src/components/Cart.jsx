@@ -154,6 +154,7 @@ function Cart() {
           </button>
         </div>
       </div>
+      
     </>
   )
 }
